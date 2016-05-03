@@ -2,7 +2,6 @@ require 'http'
 
 # Returns an authenticated account, or nil
 class FindAuthenticatedAccount
-	# include ConfigShareServiceAPI
 	HOST = 'http://api-configshare.herokuapp.com/api/v1'
 
 	def self.call(username:, password:)

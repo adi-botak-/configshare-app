@@ -1,2 +1,3 @@
 .bundle/
-*.html
+views/*.html
+*.codekit
