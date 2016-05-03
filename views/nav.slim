@@ -1,0 +1,16 @@
+a href='/'
+  == "HOME"
+= " | "
+-  if @current_user
+   = "#{@current_user.username} | "
+   a href="/user/#{@current_user.username}"
+     account
+   = " | "
+   a href='/logout'
+     logout
+-  else
+   a href='/login'
+     = "login"
+   = " | "
+   a href='/register'
+     = "register"
