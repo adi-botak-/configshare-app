@@ -6,7 +6,15 @@ gem 'thin'
 gem 'slim'
 
 gem 'http'
+gem 'json-jwt'
+gem 'rbnacl-libsodium'
 
 group :development do 
 	gem 'rerun'
+end
+
+group :development, :test do
+	gem 'rake'
+	gem 'config_env'
+	gem 'tux'
 end
