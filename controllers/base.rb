@@ -1,5 +1,4 @@
 require 'sinatra'
-require 'json/jwt'
 
 # Base class for ConfigShare Web Application
 class ShareConfigurationsApp < Sinatra::Base
