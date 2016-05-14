@@ -2,7 +2,8 @@ require 'sinatra'
 
 # Base class for ConfigShare Web Application
 class ShareConfigurationsApp < Sinatra::Base
-	use Rack::Session::Cookie, coder: CookieEncoder.new, let_coder_handle_secure_encoding: true
+	enable :logging
+	use Rack::Session::Cookie, secret: ENV['MSG_KEY']
 
 	set :views, File.expand_path('../../views', __FILE__)
 

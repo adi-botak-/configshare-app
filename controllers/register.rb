@@ -30,9 +30,9 @@ class ShareConfigurationsApp < Sinatra::Base
 		new_account = SecureMessage.decrypt(params[:token_secure])
 
 		result = CreateVerifiedAccount.call(
-			username: new_account[:username],
-			email: new_account[:email],
-			password: params[:password])
+			username: new_account['username'],
+			email: new_account['email'],
+			password: params['password'])
 
 		puts "RESULT: #{result}"
 		result ? redirect('/login') : redirect('/register')
