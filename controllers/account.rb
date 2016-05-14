@@ -14,7 +14,7 @@ class ShareConfigurationsApp < Sinatra::Base
 	end
 
 	post '/login/?' do
-		credentials = LoginForm.call(params)
+		credentials = LoginCredentials.call(params)
 		if credentials.failure?
 			flash[:error] = 'Please enter both your username and password'
 			redirect '/login'
@@ -26,7 +26,7 @@ class ShareConfigurationsApp < Sinatra::Base
 		if @current_account
 			session[:current_account] = SecureMessage.encrypt(@current_account)
 			flash[:notice] = "Welcome back, #{@current_account['username']}!"
-			slim :home
+			redirect '/'
 		else
 			flash[:error] = 'Your username or password did not match our records'
 			slim :login
