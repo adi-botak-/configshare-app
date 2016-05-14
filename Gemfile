@@ -5,6 +5,7 @@ gem 'sinatra'
 gem 'thin'
 gem 'slim'
 gem 'rack-flash3'
+gem 'rack-ssl-enforcer'
 
 gem 'http'
 gem 'jose'

@@ -1,6 +1,6 @@
 require 'dry-validation'
 
-LoginForm = Dry::Validation.Form do 
+LoginCredentials = Dry::Validation.Form do 
   key(:username).required
   key(:password).required
 end

@@ -4,6 +4,7 @@ require 'rack-flash'
 # Base class for ConfigShare Web Application
 class ShareConfigurationsApp < Sinatra::Base
 	enable :logging
+	
 	use Rack::Session::Cookie, secret: ENV['MSG_KEY']
 	use Rack::Flash
 
