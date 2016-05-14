@@ -4,14 +4,16 @@ ruby '2.3.1'
 gem 'sinatra'
 gem 'thin'
 gem 'slim'
+gem 'rack-flash3'
 
 gem 'http'
-gem 'rbnacl-libsodium'
 gem 'jose'
 
+gem 'dry-validation'
 gem 'pony'
 
 group :development do 
+	gem 'rbnacl-libsodium'
 	gem 'rerun'
 end
 
