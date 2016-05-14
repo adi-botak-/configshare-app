@@ -7,8 +7,6 @@ configure :development, :test do
 end
 
 configure do
-	enable :logging
-
 	Pony.options = {
 		from: "noreply@#{ENV['SENDGRID_DOMAIN']}",
 		via: :smtp,
