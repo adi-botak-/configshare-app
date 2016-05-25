@@ -1,0 +1,19 @@
+require 'http'
+
+# Returns all projects belonging to an account
+class GetAllProjects
+  def self.call(username:)
+    response = HTTP.get("#{ENV['API_HOST']}/accounts/#{username}/projects")
+    response.code == 200 ? extract_projects(response.parse) : nil
+  end
+
+  private
+
+  def self.extract_projects(projects)
+    projects['data'].map do |proj|
+      { id: proj['id'],
+      	name: proj['attributes']['name'],
+      	repo_url: proj['attributes']['repo_url'] }
+    end
+  end
+end

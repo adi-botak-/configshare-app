@@ -1,0 +1,16 @@
+h1
+  == "#{@project[:name]}"
+
+table
+  tr
+    td Project Repository:
+    td #{@project[:repo_url]}
+
+table
+  tr
+    th File
+    th Description
+  - @project[:configurations].each do |config|
+    tr
+      td #{config[:name]}
+      td #{config[:description]}
