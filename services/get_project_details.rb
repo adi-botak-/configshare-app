@@ -1,8 +1,8 @@
 require 'http'
 
 class GetProjectDetails
-  def self.call(username:, project_id:)
-    response = HTTP.get("#{ENV['API_HOST']}/projects/#{project_id}")
+  def self.call(project_id:, auth_token:)
+    response = HTTP.auth("Bearer #{auth_token}").get("#{ENV['API_HOST']}/projects/#{project_id}")
     response.code == 200 ? extract_project_details(response.parse) : nil
   end
 
