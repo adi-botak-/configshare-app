@@ -4,7 +4,7 @@ class ShareConfigurationsApp < Sinatra::Base
   get '/accounts/:username/projects' do 
     if @current_account && @current_account['username'] == params[:username]
       @projects = GetAllProjects.call(
-        username: params[:username],
+        current_account: @current_account,
         auth_token: session[:auth_token])
     end
 

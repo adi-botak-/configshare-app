@@ -2,8 +2,8 @@ require 'http'
 
 # Returns all projects belonging to an account
 class GetAllProjects
-  def self.call(username:, auth_token:)
-    response = HTTP.auth("Bearer #{auth_token}").get("#{ENV['API_HOST']}/accounts/#{username}/projects")
+  def self.call(current_account:, auth_token:)
+    response = HTTP.auth("Bearer #{auth_token}").get("#{ENV['API_HOST']}/accounts/#{current_account['id']}/projects")
     response.code == 200 ? extract_projects(response.parse) : nil
   end
 
