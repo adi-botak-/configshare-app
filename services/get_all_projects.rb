@@ -7,7 +7,7 @@ class GetAllProjects
     response.code == 200 ? extract_projects(response.parse) : nil
   end
 
-  private
+  private_class_method
 
   def self.extract_projects(projects)
     projects['data'].map do |proj|

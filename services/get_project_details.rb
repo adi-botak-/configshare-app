@@ -6,7 +6,7 @@ class GetProjectDetails
     response.code == 200 ? extract_project_details(response.parse) : nil
   end
 
-  private
+  private_class_method
 
   def self.extract_project_details(project_data)
     project = project_data['data']
