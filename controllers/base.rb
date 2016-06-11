@@ -21,6 +21,13 @@ class ShareConfigurationsApp < Sinatra::Base
 			@current_account = SecureMessage.decrypt(session[:current_account])
 		end
 	end
+
+	def halt_if_incorrect_user(params)
+	  return true if @current_account && @current_account['username'] == params[:username]
+	  flash[:error] = 'Wrong user made this request'
+	  redirect '/'
+	  halt
+	end
 	
 	get '/' do 
 		slim :home

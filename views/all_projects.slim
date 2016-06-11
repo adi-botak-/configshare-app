@@ -1,4 +1,8 @@
-h1 Projects
+div class="row" style="vertical-align: bottom;"
+  div class="col-xs-9"
+    h3 All Projects
+  div class="col-xs-3"
+    button type="button" class="btn btn-success" data-toggle="modal" data-target="#newProjectModal" + New Project
 table class="table"
   thead
     tr
@@ -11,3 +15,19 @@ table class="table"
           a href="/accounts/#{@current_account['username']}/projects/#{proj[:id]}" #{proj[:name]}
         td
           a href="#{proj[:repo_url]}" #{proj[:repo_url]}
+
+div id="newProjectModal" class="modal fade" role="dialog"
+  div class="modal-dialog"
+    div class="modal-content"
+      div class="modal-header"
+        h4 New Project
+      div class="modal-body"
+        form action="/accounts/#{@current_account['username']}/projects" method='post' id='new-project-form'
+          div class="form-group"
+            label for='name_input' Project Name: 
+            input type='text' name='name' id='name_input' class="form-control" placeholder="name is required"
+          div class="form-group"
+            label for='repo_url_input' Project Repo URL: 
+            input type='text' name='repo_url' id='repo_url_input' class="form-control" placeholder="must be a URL: https://github.com/me/example"
+          button type='submit' id='registration-form-submit' class='submit value='submit' class="btn btn-success" Create
+          button type="button" class="btn btn-default" data-dismiss="modal" Cancel
