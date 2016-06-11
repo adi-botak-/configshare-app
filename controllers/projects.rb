@@ -17,6 +17,7 @@ class ShareConfigurationsApp < Sinatra::Base
         project_id: params[:project_id],
         auth_token: session[:auth_token])
       if @project
+        puts "PROJECT #{@project}"
         slim(:project)
       else
         flash[:error] = 'We cannot find this project in your account'

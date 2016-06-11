@@ -9,20 +9,12 @@ class GetProjectDetails
   private_class_method
 
   def self.extract_project_details(project_data)
-    project = project_data['data']
-    configs = project_data['relationships']
+    configurations = project_data['relationships']['configurations']
 
-    configurations = configs.map do |config|
-      { id: config['id'],
-      	name: config['data']['name'],
-      	description: config['data']['description']
-      }
+    configs = configurations.map do |config|
+      { 'id' => config['id'] }.merge(config['attributes'])
     end
 
-    { id: project['id'],
-    	name: project['attributes']['name'],
-    	repo_url: project['attributes']['repo_url'],
-    	configurations: configurations
-    }
+    { 'id' => project_data['id'], 'configurations' => configs }.merge(project_data['attributes']).merge(project_data['relationships'])
   end
 end

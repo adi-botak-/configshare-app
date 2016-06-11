@@ -1,10 +1,12 @@
-h1
+h2
   == "#{@project[:name]}"
 
-table class="table"
-  tr
-    td Project Repository:
-    td #{@project[:repo_url]}
+d1
+  div class="row"
+    div class="col-xs-3"
+      dt Project Repository: 
+    div class="col-xs-9"
+      dd class="blockquote" #{@project['repo_url']}
 
 table class="table"
   thead
@@ -12,7 +14,35 @@ table class="table"
       th File
       th Description
   tbody
-    - @project[:configurations].each do |config|
+    - @project['configurations'].each do |config|
       tr
-        td #{config[:name]}
-        td #{config[:description]}
+        td
+          a href="/accounts/#{@current_account['id']}/projects/#{@project['id']}/configurations/#{config['id']}"
+            == "#{config['attributes']['filename']}"
+        td #{config['attributes']['description']}
+
+div class="col-xs-4"
+  button type="button" class="btn btn-success" data-toggle="modal" data-target="#newConfigurationModal" + New Configuration File
+
+div id="newConfigurationModal" class="modal fade" role="dialog"
+  div class="modal-dialog"
+    div class="modal-content"
+      div class="modal-header"
+        h4 New Configuration File
+      div class="modal-body"
+        form role="form" action="/accounts/#{@current_account['username']}/projects/#{project['id']}/configurations" method='post' id='new-configuration-form'
+          div class="form-group"
+            label for='filename_input' File Name: 
+            input type='text' name='filename' id='filename_input' class="form-control" placeholder="Filename is required"
+          div class="form-group"
+            label for='relative_path_input' Relative File Path: 
+            span class="small" style="margin-left:10px;" (relative to project root)
+            input type='text' name='relative_path' id='relative_path_input' class="form-control" placeholder="(optional)" value="/"
+          div class="form-group"
+            label for='description_input' Description: 
+            input type='text' name='description' id='description_input' class="form-control" placeholder="Describe the file"
+          div class="form-group"
+            label for='document_input' Document: 
+            textarea name='document' id='document_input' class="form-control" placeholder="Copy/paste your config file here"
+          button type='submit' id='registration-form-submit' class='submit' value='submit' class="btn btn-success" Create
+          button type="button" class="btn btn-default" data-dismiss="modal" Cancel
