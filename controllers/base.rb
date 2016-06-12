@@ -22,8 +22,12 @@ class ShareConfigurationsApp < Sinatra::Base
 		end
 	end
 
+	def authentic_user?(params)
+	  @current_account && @current_account['username'] == params[:username]
+	end
+
 	def halt_if_incorrect_user(params)
-	  return true if @current_account && @current_account['username'] == params[:username]
+	  return true if authentic_user?(params)
 	  flash[:error] = 'Wrong user made this request'
 	  redirect '/'
 	  halt

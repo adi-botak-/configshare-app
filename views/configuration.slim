@@ -1,0 +1,17 @@
+h2
+  a href="#{@project_url}" #{@config['project']['name']}
+ h3 File: #{File.join(@config['relative_path'], @config['filename'])}
+
+ d1
+   div class="row"
+     div class="col-xs-3"
+       dt Description: 
+     div class="col-xs-9"
+       dd class="blockquote" #{@config['description']}
+     div class="col-xs-3"
+       dt Document: 
+     div class="col-xs-9"
+       dd class="blockquote"
+         a data-toggle="collapse" href="#document" aria-expanded="false" aria-controls="document" show document
+         div id="document" class="collapse"
+           pre class="force-wrap" #{Base64.strict_decode64(@config['document'])}

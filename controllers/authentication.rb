@@ -2,6 +2,13 @@ require 'sinatra'
 
 # Account Authentication, Registration, and Authorization
 class ShareConfigurationsApp < Sinatra::Base
+  def login_account(authorized_account)
+    @current_account = authorized_account['account']
+    session[:auth_token] = authorized_account['auth_token']
+    session[:current_account] = SecureMessage.encrypt(@current_account)
+    flash[:notice] = "Welcome back, #{@current_account['username']}"
+  end
+
   get '/login/?' do
     @gh_url = HTTP.get("#{ENV['API_HOST']}/github_sso_url").parse['url']
     slim :login
@@ -18,11 +25,8 @@ class ShareConfigurationsApp < Sinatra::Base
     auth_account = FindAuthenticatedAccount.call(credentials)
 
     if auth_account
-      @current_account = auth_account['account']
-      session[:auth_token] = auth_account['auth_token']
-      session[:current_account] = SecureMessage.encrypt(@current_account)
-      flash[:notice] = "Welcome back, #{@current_account['username']}"
-      redirect '/'
+      login_account(auth_account)
+      redirect "/accounts/#{@current_account['username']}/projects"
     else
       flash[:error] = 'Your username or password did not match our records'
       redirect :login
@@ -40,11 +44,8 @@ class ShareConfigurationsApp < Sinatra::Base
     begin
       sso_account = RetrieveGithubAccount.call(params['code'])
 
-      @current_account = sso_account['account']
-      session[:auth_token] = sso_account['auth_token']
-      session[:current_account] = SecureMessage.encrypt(@current_account)
-      flash[:notice] = "Welcome back, #{current_account['username']}"
-      redirect '/'
+      login_account(sso_account)
+      redirect "/accounts/#{@current_account['username']}/projects"
 
       redirect '/projects'
     rescue => e
