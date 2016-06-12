@@ -4,6 +4,7 @@ ruby '2.3.1'
 gem 'sinatra'
 gem 'thin'
 gem 'slim'
+gem 'tux'
 gem 'rack-flash3'
 gem 'rack-ssl-enforcer'
 
