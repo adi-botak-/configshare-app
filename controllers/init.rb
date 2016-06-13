@@ -1,3 +1,5 @@
+require_relative 'security'
+
 require_relative 'base'
 require_relative 'account'
 require_relative 'authentication'

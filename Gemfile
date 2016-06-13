@@ -6,7 +6,9 @@ gem 'thin'
 gem 'slim'
 gem 'tux'
 gem 'rack-flash3'
+
 gem 'rack-ssl-enforcer'
+gem 'secure_headers'
 
 gem 'http'
 gem 'rbnacl-libsodium'

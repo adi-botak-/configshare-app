@@ -87,6 +87,8 @@ GEM
       rack-test (~> 0.6.2)
       ripl (>= 0.7.0)
     ruby_dep (1.2.0)
+    secure_headers (3.3.2)
+      useragent
     sinatra (1.4.7)
       rack (~> 1.5)
       rack-protection (~> 1.4)
@@ -108,6 +110,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.2)
+    useragent (0.16.7)
 
 PLATFORMS
   ruby
@@ -123,6 +126,7 @@ DEPENDENCIES
   rake
   rbnacl-libsodium
   rerun
+  secure_headers
   sinatra
   slim
   thin
